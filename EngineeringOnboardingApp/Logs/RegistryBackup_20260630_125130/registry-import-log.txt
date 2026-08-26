@@ -1,0 +1,24 @@
+12:51:30 [INFO] ----------------------------------------
+12:51:30 [INFO] Registry import safety check
+12:51:30 [INFO] ----------------------------------------
+12:51:30 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+12:51:30 [INFO] HKCU source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hkcu.reg.txt
+12:51:30 [INFO] HKLM source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hklm.reg.txt
+12:51:30 [INFO] Backup directory: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125130
+12:51:30 [INFO] PreviewOnly: True
+12:51:30 [INFO] SkipHKCU: False
+12:51:30 [INFO] SkipHKLM: False
+12:51:30 [INFO] Is Administrator: False
+12:51:30 [INFO] ----------------------------------------
+12:51:30 [INFO] Processing HKCU registry file.
+12:51:30 [INFO] HKCU staged import file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125130\HKCU_import_20260630_125130.reg
+12:51:30 [INFO] Backing up registry key: HKCU\Software\GE_Kretz
+12:51:30 [INFO] Backup file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125130\backup_HKCU_GE_Kretz_20260630_125130.reg
+12:51:30 [INFO] Backup completed.
+12:51:30 [WARN] PreviewOnly enabled. Would import HKCU file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125130\HKCU_import_20260630_125130.reg
+12:51:30 [INFO] Processing HKLM registry file.
+12:51:30 [WARN] HKLM requires Administrator rights. Skipping import.
+12:51:30 [INFO] ----------------------------------------
+12:51:30 [INFO] Registry import process finished.
+12:51:30 [INFO] Backups/logs saved in: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125130
+12:51:30 [INFO] ----------------------------------------

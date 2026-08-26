@@ -1,0 +1,9 @@
+11:23:44 [INFO] ----------------------------------------
+11:23:44 [INFO] Registry import safety check
+11:23:44 [INFO] ----------------------------------------
+11:23:44 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+11:23:44 [INFO] HKCU source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hkcu.reg.txt
+11:23:44 [INFO] HKLM source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hklm.reg.txt
+11:23:44 [INFO] Backup directory: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_112344
+11:23:44 [ERROR] Registry import failed: The process cannot access the file 'C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_112344\registry-import-log.txt' because it is being used by another process.
+11:23:44 [ERROR] Check backup/log folder: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_112344

@@ -1,0 +1,8 @@
+Missing Icons from the Emulator
+
+1 - Focuse
+2 - Lift Down
+3 - Lift Up
+4 - Prob Illum
+5 - UI Break
+6 - FocusDepth

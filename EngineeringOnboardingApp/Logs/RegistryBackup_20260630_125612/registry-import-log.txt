@@ -1,0 +1,6 @@
+12:56:12 [INFO] ----------------------------------------
+12:56:12 [INFO] Registry import safety check
+12:56:12 [INFO] ----------------------------------------
+12:56:12 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+12:56:12 [ERROR] Registry import failed: The process cannot access the file 'C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125612\registry-import-log.txt' because it is being used by another process.
+12:56:12 [ERROR] Check backup/log folder: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_125612

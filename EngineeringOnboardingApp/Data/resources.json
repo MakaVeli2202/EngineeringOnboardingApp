@@ -1,0 +1,63 @@
+﻿[
+  {
+    "id": "myaccess",
+    "name": "GEHC MyAccess",
+    "url": "https://gehealthcare.saviyntcloud.com/ECMv6/request/requestHome",
+    "category": "Access",
+    "description": "Use this access portal for licenses, internal applications, and permissions requests.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "confluence-home",
+    "name": "GEHC Confluence",
+    "url": "https://ge-hc.atlassian.net/wiki/home",
+    "category": "Documentation",
+    "description": "Main internal documentation and knowledge base.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "confluence-request",
+    "name": "Confluence Account Creation / Reactivation",
+    "url": "https://edh.apps.ge-healthcare.net/confluence/",
+    "category": "Access",
+    "description": "Use this when Confluence access is missing or needs reactivation.",
+    "addToBookmarks": false
+  },
+  {
+    "id": "pulse-home",
+    "name": "Pulse",
+    "url": "https://pulse.service-now.com/",
+    "category": "Support",
+    "description": "Support portal for knowledge base articles, guidance, and ticket-related flows.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "prisma-kb",
+    "name": "Prisma Browser Guide",
+    "url": "https://pulse.service-now.com/mth?id=kb_article&sysparm_article=KB00308598",
+    "category": "Support",
+    "description": "Guide for Prisma Browser usage while waiting for access or VPN-related dependencies.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "araxis-mytech",
+    "name": "Araxis Merge - Corporate Page",
+    "url": "https://mytech.ge.com/products-and-services/software/detail?id=3356&type=Windows&source=araxis",
+    "category": "Tools",
+    "description": "Corporate software page for Araxis Merge.",
+    "addToBookmarks": false
+  },
+  {
+    "id": "resharper-download",
+    "name": "ReSharper Download",
+    "url": "https://www.jetbrains.com/resharper/download/",
+    "category": "Tools",
+    "description": "ReSharper download page. Replace later if you get a company-managed source.",
+    "addToBookmarks": false
+  }
+]
+
+
+
+
+

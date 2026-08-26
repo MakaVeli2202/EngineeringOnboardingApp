@@ -1,0 +1,24 @@
+﻿09:45:06 [INFO] ----------------------------------------
+09:45:06 [INFO] Registry import safety check
+09:45:06 [INFO] ----------------------------------------
+09:45:06 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+09:45:06 [INFO] HKCU source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hkcu.reg.txt
+09:45:06 [INFO] HKLM source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hklm.reg.txt
+09:45:06 [INFO] Backup directory: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_094506
+09:45:06 [INFO] PreviewOnly: True
+09:45:06 [INFO] SkipHKCU: False
+09:45:06 [INFO] SkipHKLM: False
+09:45:06 [INFO] Is Administrator: False
+09:45:06 [INFO] ----------------------------------------
+09:45:06 [INFO] Processing HKCU registry file.
+09:45:06 [INFO] HKCU staged import file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_094506\HKCU_import_20260701_094506.reg
+09:45:06 [INFO] Backing up registry key: HKCU\Software\GE_Kretz
+09:45:06 [INFO] Backup file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_094506\backup_HKCU_GE_Kretz_20260701_094506.reg
+09:45:06 [INFO] Backup completed.
+09:45:06 [WARN] PreviewOnly enabled. Would import HKCU file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_094506\HKCU_import_20260701_094506.reg
+09:45:06 [INFO] Processing HKLM registry file.
+09:45:06 [WARN] HKLM requires Administrator rights. Skipping import.
+09:45:06 [INFO] ----------------------------------------
+09:45:06 [INFO] Registry import process finished.
+09:45:06 [INFO] Backups/logs saved in: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_094506
+09:45:06 [INFO] ----------------------------------------

@@ -1,0 +1,1818 @@
+﻿<Window x:Class="EngineeringOnboardingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        mc:Ignorable="d"
+        Title="Engineering Onboarding App"
+        Height="940"
+        Width="1540"
+        MinHeight="800"
+        MinWidth="1280"
+        Icon="pack://siteoforigin:,,,/Assets/AppIcon.ico"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        WindowState="Maximized"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        Loaded="Window_Loaded"
+        StateChanged="Window_StateChanged">
+
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="42"
+                            ResizeBorderThickness="8"
+                            GlassFrameThickness="0"
+                            CornerRadius="0"
+                            UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Grid>
+        <!-- Background -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0A0F1F" Offset="0.0"/>
+                <GradientStop Color="#10182B" Offset="0.45"/>
+                <GradientStop Color="#0C1120" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Soft purple glows -->
+        <Ellipse Width="360"
+                 Height="360"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Margin="-120,-100,0,0"
+                 IsHitTestVisible="False">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#668B5CF6" Offset="0"/>
+                    <GradientStop Color="#008B5CF6" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Ellipse Width="280"
+                 Height="280"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom"
+                 Margin="0,0,-80,-80"
+                 IsHitTestVisible="False">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#446D28D9" Offset="0"/>
+                    <GradientStop Color="#006D28D9" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- =========================
+                 CUSTOM TITLE BAR
+            ========================== -->
+            <Border Grid.Row="0"
+                    Background="#111827E6"
+                    BorderBrush="#253146"
+                    BorderThickness="0,0,0,1"
+                    Padding="16,10"
+                    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                           <Image Source="pack://siteoforigin:,,,/Assets/AppIcon.ico"
+                               Width="18"
+                               Height="18"
+                               Margin="0,0,10,0"
+                               SnapsToDevicePixels="True"/>
+                        <TextBlock Text="Engineering Onboarding App"
+                                   FontSize="13.5"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Column="1"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Text="Onboarding workspace"/>
+
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Button x:Name="MinimizeButton"
+                                Content="—"
+                                Style="{StaticResource TitleBarButtonStyle}"
+                                Click="MinimizeButton_Click"/>
+
+                        <Button x:Name="MaximizeRestoreButton"
+                                Content="▢"
+                                Style="{StaticResource TitleBarButtonStyle}"
+                                Click="MaximizeRestoreButton_Click"/>
+
+                        <Button x:Name="CloseButton"
+                                Content="✕"
+                                Margin="0"
+                                Background="#2B1730"
+                                BorderBrush="#5B2139"
+                                Foreground="#FCE7F3"
+                                Style="{StaticResource TitleBarButtonStyle}"
+                                Click="CloseButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1"
+                  Margin="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+            <!-- =========================
+                 HEADER
+            ========================== -->
+            <Border Grid.Row="0"
+                    Style="{StaticResource GlassCardStyle}"
+                    Margin="0,0,0,16"
+                    Padding="24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Software Engineering Onboarding"
+                                   Style="{StaticResource PageTitleTextStyle}"/>
+
+                        <TextBlock Margin="0,8,0,0"
+                                   Style="{StaticResource SubtitleTextStyle}"
+                                   Text="Complete workstation setup, access requests, development tools installation, onboarding validation, and engineering resources from a single workspace."
+                                   TextWrapping="Wrap"/>
+
+                        <UniformGrid Margin="0,16,0,0" Columns="4">
+                            <Border Margin="0,0,12,0"
+                                    Background="#1A162133"
+                                    BorderBrush="#334155"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="14">
+                                <StackPanel>
+                                    <TextBlock Text="Completed"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               FontSize="11"/>
+                                    <TextBlock Text="{Binding CompletedStepCount}"
+                                               Foreground="{StaticResource SuccessBrush}"
+                                               FontSize="22"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Margin="0,0,12,0"
+                                    Background="#1A162133"
+                                    BorderBrush="#334155"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="14">
+                                <StackPanel>
+                                    <TextBlock Text="Pending"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               FontSize="11"/>
+                                    <TextBlock Text="{Binding PendingStepCount}"
+                                               Foreground="{StaticResource WarningBrush}"
+                                               FontSize="22"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Margin="0,0,12,0"
+                                    Background="#1A162133"
+                                    BorderBrush="#334155"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="14">
+                                <StackPanel>
+                                    <TextBlock Text="Failed"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               FontSize="11"/>
+                                    <TextBlock Text="{Binding FailedStepCount}"
+                                               Foreground="{StaticResource DangerBrush}"
+                                               FontSize="22"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#1A162133"
+                                    BorderBrush="#334155"
+                                    BorderThickness="1"
+                                    CornerRadius="14"
+                                    Padding="14">
+                                <StackPanel>
+                                    <TextBlock Text="Optional Selected"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               FontSize="11"/>
+                                    <TextBlock Text="{Binding OptionalSelectedToolCount}"
+                                               Foreground="{StaticResource PrimaryBrush}"
+                                               FontSize="22"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Background="#22161D2D"
+                            BorderBrush="#338B5CF6"
+                            BorderThickness="1"
+                            CornerRadius="14"
+                            Padding="16,12"
+                            VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock Text="Environment Validation"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource PrimaryBrush}"/>
+                            <TextBlock Text="{Binding PreflightSummary}"
+                                       FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                            <TextBlock Margin="0,6,0,0"
+                                       Text="{Binding CurrentStepDisplay}"
+                                       FontSize="11"
+                                       Foreground="{StaticResource MutedBrush}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- =========================
+                 ACTION BAR
+            ========================== -->
+            <Border Grid.Row="1"
+                    Style="{StaticResource GlassCardStyle}"
+                    Margin="0,0,0,16"
+                    Padding="16">
+                <WrapPanel>
+                        <Button Content="Install Required Tools"
+                        MinWidth="210"
+                        MinHeight="46"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding RunAllRequiredCommand}"/>
+
+                    <Button Content="Install Selected Tools"
+                        MinWidth="250"
+                        MinHeight="46"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding InstallSelectedToolsCommand}"/>
+
+                    <Button Content="Refresh Detection"
+                        MinWidth="170"
+                        MinHeight="46"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding RefreshDetectionCommand}"/>
+
+                    <Button Content="Validate Configuration"
+                        MinWidth="220"
+                        MinHeight="46"
+                        Margin="0,0,10,0"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding RunPreflightCommand}"/>
+
+                    <Button Content="Reload Config"
+                        MinWidth="145"
+                        MinHeight="46"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding ReloadCommand}"/>
+
+                    <Button Content="Reset State"
+                        MinWidth="140"
+                        MinHeight="46"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding ResetStateCommand}"/>
+                </WrapPanel>
+            </Border>
+
+            <!-- =========================
+                 MAIN CONTENT
+            ========================== -->
+            <TabControl Grid.Row="2">
+                <!-- =====================================
+                     TAB 1: ONBOARDING STEPS
+                ====================================== -->
+                <TabItem Header="Onboarding Steps">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.15*"/>
+                            <ColumnDefinition Width="1.25*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="180"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Step cards -->
+                        <Border Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,16">
+                                    <TextBlock Text="Guided Onboarding Flow"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Each step is presented as a guided card with clearer context, actions, and status."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+
+                                <ListBox Grid.Row="1"
+                                         ScrollViewer.CanContentScroll="False"
+                                         VirtualizingStackPanel.IsVirtualizing="False"
+                                         ItemsSource="{Binding Steps}"
+                                         SelectedItem="{Binding SelectedStep, Mode=TwoWay}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Margin" Value="0,0,0,12"/>
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="Opacity" Value="1"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsLocked}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                    <Setter Property="Opacity" Value="0.55"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="16"
+                                                    Padding="18"
+                                                    BorderBrush="#2D3748"
+                                                    BorderThickness="1">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="BorderBrush" Value="#2D3748"/>
+                                                        <Setter Property="Background" Value="#0F172A"/>
+                                                        <Setter Property="BorderThickness" Value="1"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                                                <Setter Property="BorderBrush" Value="#8B5CF6"/>
+                                                                <Setter Property="BorderThickness" Value="1.4"/>
+                                                                <Setter Property="Background" Value="#16122A"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                <Setter Property="BorderBrush" Value="#2E7D32"/>
+                                                                <Setter Property="Background" Value="#10261A"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                                <Setter Property="BorderBrush" Value="#EF4444"/>
+                                                                <Setter Property="Background" Value="#2A1111"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                <Setter Property="BorderBrush" Value="#64748B"/>
+                                                                <Setter Property="Background" Value="#101827"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+
+                                                <Border.Effect>
+                                                    <DropShadowEffect BlurRadius="16"
+                                                                      ShadowDepth="0"
+                                                                      Opacity="0.18"
+                                                                      Color="#000000"/>
+                                                </Border.Effect>
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <!-- Top badges -->
+                                                    <DockPanel Grid.Row="0">
+                                                        <Border Background="#241A2238"
+                                                                BorderBrush="#3A8B5CF6"
+                                                                BorderThickness="1"
+                                                                CornerRadius="11"
+                                                                Padding="10,4"
+                                                                Margin="0,0,8,0"
+                                                                DockPanel.Dock="Left">
+                                                            <TextBlock Text="{Binding Section}"
+                                                                       FontSize="11"
+                                                                       FontWeight="SemiBold"
+                                                                       Foreground="{StaticResource PrimaryBrush}"/>
+                                                        </Border>
+
+                                                        <Border Padding="10,4"
+                                                                CornerRadius="11"
+                                                                HorizontalAlignment="Left">
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Setter Property="Background" Value="#1F334155"/>
+                                                                    <Setter Property="BorderBrush" Value="#334155"/>
+                                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                            <Setter Property="Background" Value="#1A14532D"/>
+                                                                            <Setter Property="BorderBrush" Value="#22522C"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                                            <Setter Property="Background" Value="#1A1D4ED8"/>
+                                                                            <Setter Property="BorderBrush" Value="#3B82F6"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="PendingApproval">
+                                                                            <Setter Property="Background" Value="#1A92400E"/>
+                                                                            <Setter Property="BorderBrush" Value="#F59E0B"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                                            <Setter Property="Background" Value="#1A7F1D1D"/>
+                                                                            <Setter Property="BorderBrush" Value="#EF4444"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                            <Setter Property="Background" Value="#1A475569"/>
+                                                                            <Setter Property="BorderBrush" Value="#64748B"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+
+                                                            <TextBlock Text="{Binding Status}"
+                                                                       FontSize="11"
+                                                                       FontWeight="SemiBold">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Foreground" Value="{StaticResource NeutralBrush}"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                                <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                                                <Setter Property="Foreground" Value="#93C5FD"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="PendingApproval">
+                                                                                <Setter Property="Foreground" Value="{StaticResource WarningBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                                                <Setter Property="Foreground" Value="{StaticResource DangerBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                                <Setter Property="Foreground" Value="#CBD5E1"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+
+                                                        <Border Padding="10,4"
+                                                                CornerRadius="11"
+                                                                HorizontalAlignment="Right"
+                                                                DockPanel.Dock="Right">
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Setter Property="Background" Value="#1F334155"/>
+                                                                    <Setter Property="BorderBrush" Value="#334155"/>
+                                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                            <Setter Property="Background" Value="#10261A"/>
+                                                                            <Setter Property="BorderBrush" Value="#2E7D32"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                            <Setter Property="Background" Value="#101827"/>
+                                                                            <Setter Property="BorderBrush" Value="#64748B"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+
+                                                            <TextBlock FontSize="11"
+                                                                       FontWeight="SemiBold"
+                                                                       Text="{Binding Status}">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                                <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                                                <Setter Property="Foreground" Value="#93C5FD"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="PendingApproval">
+                                                                                <Setter Property="Foreground" Value="{StaticResource WarningBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                                                <Setter Property="Foreground" Value="{StaticResource DangerBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                                <Setter Property="Foreground" Value="#CBD5E1"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+                                                    </DockPanel>
+
+                                                    <!-- Title -->
+                                                    <TextBlock Grid.Row="1"
+                                                               Margin="0,14,0,6"
+                                                               Text="{Binding Title}"
+                                                               FontSize="19"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"
+                                                               TextWrapping="Wrap">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                        <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+                                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="Skipped">
+                                                                        <Setter Property="Foreground" Value="#CBD5E1"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                                                        <Setter Property="TextDecorations" Value="None"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+
+                                                    <!-- Description -->
+                                                    <TextBlock Grid.Row="2"
+                                                               Text="{Binding Description}"
+                                                               FontSize="13"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               TextWrapping="Wrap"/>
+
+                                                    <!-- Footer -->
+                                                    <DockPanel Grid.Row="3" Margin="0,16,0,0">
+
+                                                            <Button Content="Start Step"
+                                                                MinWidth="150"
+                                                                MinHeight="46"
+                                                                DockPanel.Dock="Right"
+                                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                                Command="{Binding DataContext.ExecuteStepCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding}"/>
+
+                                                        <TextBlock VerticalAlignment="Center"
+                                                                   Foreground="{StaticResource MutedBrush}"
+                                                                   FontSize="12"
+                                                                   Text="{Binding HelpText}"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   Margin="0,0,12,0"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <!-- Step details -->
+                        <Border Grid.Row="0"
+                                Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Current Step"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,8,0,0"
+                                           Text="{Binding CurrentStepDisplay}"
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource PrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="2"
+                                           Margin="0,14,0,6"
+                                           Text="{Binding SelectedStep.Title, TargetNullValue=Select a step from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <StackPanel Grid.Row="3"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,14">
+                                    <Border Background="#241A2238"
+                                            BorderBrush="#3A8B5CF6"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4"
+                                            Margin="0,0,8,0">
+                                        <TextBlock Text="{Binding SelectedStep.Section, TargetNullValue=No section}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryBrush}"/>
+                                    </Border>
+
+                                    <Border Background="#1F334155"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding SelectedStep.Status, StringFormat=Status: {0}, TargetNullValue=Status: Not Started}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <ScrollViewer Grid.Row="4"
+                                              VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="What this step does"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Margin="0,6,0,16"
+                                                   Text="{Binding SelectedStep.Description}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+
+                                            <TextBlock Text="Instructions"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                            <Border Margin="0,8,0,0"
+                                                    Background="#101827"
+                                                    BorderBrush="#26344A"
+                                                    BorderThickness="1"
+                                                    CornerRadius="12"
+                                                    Padding="16">
+
+                                                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                    MinHeight="260">
+
+                                                    <TextBlock Text="{Binding SelectedStep.HelpText}"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                                       FontSize="13"
+                                                       LineHeight="24"/>
+
+                                                </ScrollViewer>
+
+                                            </Border>
+
+                                        </StackPanel>
+                                </ScrollViewer>
+
+                                <WrapPanel Grid.Row="5"
+                                           Margin="0,16,0,0">
+                                    <Button Content="Previous Step"
+                                        MinWidth="150"
+                                        MinHeight="44"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource SecondaryButtonStyle}"
+                                        Command="{Binding PreviousStepCommand}"/>
+
+                                    <Button Content="Next Step"
+                                        MinWidth="140"
+                                        MinHeight="44"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource SecondaryButtonStyle}"
+                                        Command="{Binding NextStepCommand}"/>
+
+                                    <Button Content="Skip Step"
+                                        MinWidth="132"
+                                        MinHeight="44"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource SecondaryButtonStyle}"
+                                        Command="{Binding SkipStepCommand}"/>
+
+                                    <Button Content="Mark Completed"
+                                        MinWidth="164"
+                                        MinHeight="44"
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource PrimaryButtonStyle}"
+                                        Command="{Binding MarkCompletedCommand}"
+                                        CommandParameter="{Binding SelectedStep}"/>
+
+                                    <Button Content="Start Step"
+                                        MinWidth="152"
+                                        MinHeight="44"
+                                        Style="{StaticResource SecondaryButtonStyle}"
+                                        Command="{Binding ExecuteStepCommand}"
+                                        CommandParameter="{Binding SelectedStep}"/>
+                                </WrapPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Progress -->
+                        <Border Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource GlassCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Current Progress"
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+                                <TextBlock Margin="0,4,0,12"
+                                           Text="Tracks the current wizard position and multi-step batch execution."
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                <ProgressBar Minimum="0"
+                                             Maximum="100"
+                                             Value="{Binding CurrentProgress}"/>
+
+
+                                    <StackPanel Margin="0,10,0,0">
+                                        <TextBlock FontSize="13"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                   Text="{Binding ProgressSummary}"/>
+
+                                        <TextBlock Margin="0,4,0,0"
+                                                   FontSize="12"
+                                                   Foreground="{StaticResource MutedBrush}"
+                                                   Text="{Binding CurrentProgress, StringFormat=Progress: {0}%}"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 2: TOOLS
+                ====================================== -->
+                <TabItem Header="Tools">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,16">
+                                    <TextBlock Text="Tool Catalog"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Install required tools or select optional developer tools."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+
+                                <ListBox Grid.Row="1"
+                                         ItemsSource="{Binding Tools}"
+                                         SelectedItem="{Binding SelectedTool}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="16"
+                                                    Padding="18"
+                                                    BorderBrush="#2D3748"
+                                                    BorderThickness="1">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                        <GradientStop Color="#C0141A2B" Offset="0"/>
+                                                        <GradientStop Color="#AA161D2D" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <DockPanel Grid.Row="0">
+                                                        <Border Background="#1D253A"
+                                                                BorderBrush="#334155"
+                                                                BorderThickness="1"
+                                                                CornerRadius="11"
+                                                                Padding="10,4"
+                                                                Margin="0,0,8,0"
+                                                                DockPanel.Dock="Left">
+                                                            <TextBlock Text="{Binding Category}"
+                                                                       FontSize="11"
+                                                                       FontWeight="SemiBold"
+                                                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                                                        </Border>
+
+                                                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                  Content="Select"
+                                                                  VerticalAlignment="Center"/>
+                                                    </DockPanel>
+
+                                                    <TextBlock Grid.Row="1"
+                                                               Margin="0,14,0,6"
+                                                               Text="{Binding Name}"
+                                                               FontSize="19"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                                    <DockPanel Grid.Row="2" Margin="0,4,0,0">
+                                                        <StackPanel DockPanel.Dock="Left">
+                                                            <TextBlock Text="{Binding Description}"
+                                                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                                                       TextWrapping="Wrap"/>
+                                                            <TextBlock Margin="0,6,0,0"
+                                                                       Text="{Binding HelpText}"
+                                                                       Foreground="{StaticResource MutedBrush}"
+                                                                       FontSize="12"
+                                                                       TextTrimming="CharacterEllipsis"/>
+                                                        </StackPanel>
+
+                                                        <Button Content="Install / Open"
+                                                            MinWidth="152"
+                                                            MinHeight="42"
+                                                                DockPanel.Dock="Right"
+                                                                Margin="12,0,0,0"
+                                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                                Command="{Binding DataContext.InstallToolCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding}"/>
+                                                    </DockPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Selected Tool"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,14,0,10"
+                                           Text="{Binding SelectedTool.Name, TargetNullValue=Select a tool from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <TextBox Grid.Row="2"
+                                         Text="{Binding SelectedTool.HelpText}"
+                                         IsReadOnly="True"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 3: RESOURCES
+                ====================================== -->
+                <TabItem Header="Resources">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.7*"/>
+                            <ColumnDefinition Width="1.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,16">
+                                    <TextBlock Text="Resource Directory"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Quick links for access portals, documentation, support resources, and tool pages."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+
+                                <ListBox Grid.Row="1"
+                                         ItemsSource="{Binding Resources}"
+                                         SelectedItem="{Binding SelectedResource}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="16"
+                                                    Padding="18"
+                                                    BorderBrush="#2D3748"
+                                                    BorderThickness="1">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                        <GradientStop Color="#C0141A2B" Offset="0"/>
+                                                        <GradientStop Color="#AA161D2D" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+
+                                                <DockPanel>
+                                                    <StackPanel DockPanel.Dock="Left" Width="560">
+                                                        <TextBlock Text="{Binding Name}"
+                                                                   FontSize="18"
+                                                                   FontWeight="SemiBold"
+                                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                        <TextBlock Margin="0,4,0,6"
+                                                                   Text="{Binding Description}"
+                                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                                   TextWrapping="Wrap"/>
+                                                        <TextBlock Text="{Binding Url}"
+                                                                   Foreground="{StaticResource MutedBrush}"
+                                                                   FontSize="12"
+                                                                   TextWrapping="Wrap"/>
+                                                    </StackPanel>
+
+                                                    <Button Content="Open"
+                                                            MinWidth="112"
+                                                            MinHeight="42"
+                                                            DockPanel.Dock="Right"
+                                                            Style="{StaticResource SecondaryButtonStyle}"
+                                                            Command="{Binding DataContext.OpenResourceCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                            CommandParameter="{Binding}"/>
+                                                </DockPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="Selected Resource"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+                                <TextBlock Margin="0,14,0,6"
+                                           Text="{Binding SelectedResource.Name, TargetNullValue=Select a resource from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding SelectedResource.Description}"
+                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBox Margin="0,12,0,0"
+                                         Text="{Binding SelectedResource.Url}"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 4: STARTUP VALIDATION
+                ====================================== -->
+                <TabItem Header="Startup Validation">
+                    <Grid Margin="0,16,0,0">
+                        <Border Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,14">
+                                    <TextBlock Text="Startup Validation"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="This runs automatically at launch and can be rerun anytime without installing or changing machine state."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,0,0,12"
+                                           Text="{Binding PreflightSummary}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource PrimaryBrush}"/>
+
+                                <DataGrid Grid.Row="2"
+                                          ItemsSource="{Binding PreflightItems}"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          CanUserReorderColumns="False"
+                                          CanUserResizeRows="False"
+                                          IsReadOnly="True"
+                                          AlternationCount="2"
+                                          HeadersVisibility="Column">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Area"
+                                                            Binding="{Binding Area}"
+                                                            Width="160"/>
+                                        <DataGridTextColumn Header="Item"
+                                                            Binding="{Binding Item}"
+                                                            Width="220"/>
+                                        <DataGridTextColumn Header="Status"
+                                                            Binding="{Binding Status}"
+                                                            Width="100"/>
+                                        <DataGridTextColumn Header="Message"
+                                                            Binding="{Binding Message}"
+                                                            Width="*">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 5: LOGS
+                ====================================== -->
+                <TabItem Header="Logs">
+                    <Grid Margin="0,16,0,0">
+                        <Border Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,16">
+                                    <TextBlock Text="Application Logs"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Use this panel to diagnose installation issues, script output, and onboarding execution flow."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                    <WrapPanel Margin="0,12,0,0">
+                                        <Button Content="Copy Logs"
+                                                MinWidth="120"
+                                                MinHeight="40"
+                                                Margin="0,0,10,0"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Command="{Binding CopyLogsCommand}"/>
+
+                                        <Button Content="Clear Logs"
+                                                MinWidth="120"
+                                                MinHeight="40"
+                                                Margin="0,0,10,0"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Command="{Binding ClearLogsCommand}"/>
+
+                                        <Button Content="Save Logs"
+                                                MinWidth="120"
+                                                MinHeight="40"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Command="{Binding SaveLogsCommand}"/>
+                                    </WrapPanel>
+                                </StackPanel>
+
+                                <TextBox x:Name="LogOutputBox"
+                                         Grid.Row="1"
+                                         Text="{Binding LogText}"
+                                         IsReadOnly="True"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         FontFamily="Consolas"
+                                         FontSize="12"
+                                         Background="#0A0F1A"
+                                         Foreground="#E2E8F0"
+                                         BorderBrush="#26344A"
+                                         Padding="14"
+                                         TextChanged="LogOutputBox_TextChanged"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 6: COMPLETED STEPS
+                ====================================== -->
+                <TabItem Header="Completed Steps">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.45*"/>
+                            <ColumnDefinition Width="1.55*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,14">
+                                    <TextBlock Text="Completed Step History"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Review everything that has already been finished. Completed items remain clickable for inspection."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,0,0,10"
+                                           Text="{Binding CompletedStepCount, StringFormat=Completed: {0}}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource SuccessBrush}"/>
+
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding CompletedSteps}"
+                                         SelectedItem="{Binding BrowsedStep, Mode=TwoWay}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         VirtualizingStackPanel.IsVirtualizing="False">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Margin" Value="0,0,0,8"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="14"
+                                                    CornerRadius="12"
+                                                    Background="#10261A"
+                                                    BorderBrush="#2E7D32"
+                                                    BorderThickness="1">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <TextBlock Text="{Binding Title}"
+                                                               FontSize="15"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource SuccessBrush}"
+                                                               TextWrapping="Wrap"/>
+
+                                                    <TextBlock Grid.Row="1"
+                                                               Margin="0,6,0,0"
+                                                               Text="{Binding Description}"
+                                                               FontSize="11"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Selected Completed Step"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,14,0,6"
+                                           Text="{Binding BrowsedStep.Title, TargetNullValue=Select a completed step from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,14">
+                                    <Border Background="#10261A"
+                                            BorderBrush="#2E7D32"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4"
+                                            Margin="0,0,8,0">
+                                        <TextBlock Text="Completed"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource SuccessBrush}"/>
+                                    </Border>
+
+                                    <Border Background="#1F334155"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding BrowsedStep.Section, TargetNullValue=No section}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <ScrollViewer Grid.Row="3"
+                                              VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="Description"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Margin="0,6,0,16"
+                                                   Text="{Binding BrowsedStep.Description}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                        <TextBlock Text="Instructions"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                        <Border Margin="0,8,0,0"
+                                                Background="#101827"
+                                                BorderBrush="#26344A"
+                                                BorderThickness="1"
+                                                CornerRadius="12"
+                                                Padding="16">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                          MinHeight="220">
+                                                <TextBlock Text="{Binding BrowsedStep.HelpText}"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                           FontSize="13"
+                                                           LineHeight="24"/>
+                                            </ScrollViewer>
+                                        </Border>
+
+                                        <TextBlock Margin="0,16,0,0"
+                                                   Text="Select a completed step above to review its guidance without changing state."
+                                                   FontSize="11"
+                                                   Foreground="{StaticResource MutedBrush}"
+                                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 7: PENDING STEPS
+                ====================================== -->
+                <TabItem Header="Pending Steps">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.45*"/>
+                            <ColumnDefinition Width="1.55*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,14">
+                                    <TextBlock Text="Pending Step Queue"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Click any pending step to inspect the guidance without advancing the wizard."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,0,0,10"
+                                           Text="{Binding PendingStepCount, StringFormat=Pending: {0}}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource WarningBrush}"/>
+
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding PendingSteps}"
+                                         SelectedItem="{Binding BrowsedStep, Mode=TwoWay}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         VirtualizingStackPanel.IsVirtualizing="False">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Margin" Value="0,0,0,8"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="14"
+                                                    CornerRadius="12"
+                                                    Background="#1A92400E"
+                                                    BorderBrush="#F59E0B"
+                                                    BorderThickness="1">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Title}"
+                                                               FontSize="15"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource WarningBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                    <TextBlock Margin="0,6,0,0"
+                                                               Text="{Binding Description}"
+                                                               FontSize="11"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Selected Pending Step"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,14,0,6"
+                                           Text="{Binding BrowsedStep.Title, TargetNullValue=Select a pending step from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,14">
+                                    <Border Background="#1A92400E"
+                                            BorderBrush="#F59E0B"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4"
+                                            Margin="0,0,8,0">
+                                        <TextBlock Text="Pending"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource WarningBrush}"/>
+                                    </Border>
+
+                                    <Border Background="#1F334155"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding BrowsedStep.Section, TargetNullValue=No section}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <ScrollViewer Grid.Row="3"
+                                              VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="Description"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Margin="0,6,0,16"
+                                                   Text="{Binding BrowsedStep.Description}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                        <TextBlock Text="Instructions"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                        <Border Margin="0,8,0,0"
+                                                Background="#101827"
+                                                BorderBrush="#26344A"
+                                                BorderThickness="1"
+                                                CornerRadius="12"
+                                                Padding="16">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                          MinHeight="220">
+                                                <TextBlock Text="{Binding BrowsedStep.HelpText}"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                           FontSize="13"
+                                                           LineHeight="24"/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 8: FAILED STEPS
+                ====================================== -->
+                <TabItem Header="Failed Steps">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.45*"/>
+                            <ColumnDefinition Width="1.55*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,14">
+                                    <TextBlock Text="Failed Step Queue"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Inspect failed steps here to see what broke and what the step was meant to configure."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,0,0,10"
+                                           Text="{Binding FailedStepCount, StringFormat=Failed: {0}}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource DangerBrush}"/>
+
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding FailedSteps}"
+                                         SelectedItem="{Binding BrowsedStep, Mode=TwoWay}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         VirtualizingStackPanel.IsVirtualizing="False">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Margin" Value="0,0,0,8"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="14"
+                                                    CornerRadius="12"
+                                                    Background="#2A1111"
+                                                    BorderBrush="#EF4444"
+                                                    BorderThickness="1">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Title}"
+                                                               FontSize="15"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource DangerBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                    <TextBlock Margin="0,6,0,0"
+                                                               Text="{Binding Description}"
+                                                               FontSize="11"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Selected Failed Step"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,14,0,6"
+                                           Text="{Binding BrowsedStep.Title, TargetNullValue=Select a failed step from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,14">
+                                    <Border Background="#2A1111"
+                                            BorderBrush="#EF4444"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4"
+                                            Margin="0,0,8,0">
+                                        <TextBlock Text="Failed"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource DangerBrush}"/>
+                                    </Border>
+
+                                    <Border Background="#1F334155"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding BrowsedStep.Section, TargetNullValue=No section}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <ScrollViewer Grid.Row="3"
+                                              VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="Description"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Margin="0,6,0,16"
+                                                   Text="{Binding BrowsedStep.Description}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                        <TextBlock Text="Instructions"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                        <Border Margin="0,8,0,0"
+                                                Background="#101827"
+                                                BorderBrush="#26344A"
+                                                BorderThickness="1"
+                                                CornerRadius="12"
+                                                Padding="16">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                          MinHeight="220">
+                                                <TextBlock Text="{Binding BrowsedStep.HelpText}"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                           FontSize="13"
+                                                           LineHeight="24"/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <!-- =====================================
+                     TAB 9: OPTIONAL APPS
+                ====================================== -->
+                <TabItem Header="Optional Apps">
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.45*"/>
+                            <ColumnDefinition Width="1.55*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Style="{StaticResource GlassCardStyle}"
+                                Margin="0,0,18,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Margin="0,0,0,14">
+                                    <TextBlock Text="Optional App Catalog"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="These are the optional applications and utilities referenced by the onboarding flow."
+                                               FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,0,0,10"
+                                           Text="{Binding OptionalSelectedToolCount, StringFormat=Selected optional apps: {0}}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource PrimaryBrush}"/>
+
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding OptionalTools}"
+                                         SelectedItem="{Binding BrowsedTool, Mode=TwoWay}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Margin" Value="0,0,0,8"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="14"
+                                                    CornerRadius="12"
+                                                    Background="#101827"
+                                                    BorderBrush="#334155"
+                                                    BorderThickness="1">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontSize="15"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                    <TextBlock Margin="0,6,0,0"
+                                                               Text="{Binding Description}"
+                                                               FontSize="11"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Column="1"
+                                Style="{StaticResource GlassCardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Selected Optional App"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Grid.Row="1"
+                                           Margin="0,14,0,6"
+                                           Text="{Binding BrowsedTool.Name, TargetNullValue=Select an optional app from the left}"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           TextWrapping="Wrap"/>
+
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,14">
+                                    <Border Background="#1D253A"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4"
+                                            Margin="0,0,8,0">
+                                        <TextBlock Text="Optional"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryBrush}"/>
+                                    </Border>
+
+                                    <Border Background="#1F334155"
+                                            BorderBrush="#334155"
+                                            BorderThickness="1"
+                                            CornerRadius="11"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding BrowsedTool.Category, TargetNullValue=No category}"
+                                                   FontSize="11"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <ScrollViewer Grid.Row="3"
+                                              VerticalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <TextBlock Text="Description"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Margin="0,6,0,16"
+                                                   Text="{Binding BrowsedTool.Description}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                        <TextBlock Text="Help"
+                                                   FontSize="13"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                        <Border Margin="0,8,0,0"
+                                                Background="#101827"
+                                                BorderBrush="#26344A"
+                                                BorderThickness="1"
+                                                CornerRadius="12"
+                                                Padding="16">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                          MinHeight="220">
+                                                <TextBlock Text="{Binding BrowsedTool.HelpText}"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                           FontSize="13"
+                                                           LineHeight="24"/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+11:42:05 [INFO] ----------------------------------------
+11:42:05 [INFO] Registry import safety check
+11:42:05 [INFO] ----------------------------------------
+11:42:05 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+11:42:05 [INFO] HKCU source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hkcu.reg.txt
+11:42:05 [INFO] HKLM source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hklm.reg.txt
+11:42:05 [INFO] Backup directory: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205
+11:42:05 [INFO] PreviewOnly: True
+11:42:05 [INFO] SkipHKCU: False
+11:42:05 [INFO] SkipHKLM: False
+11:42:05 [INFO] Is Administrator: True
+11:42:05 [INFO] ----------------------------------------
+11:42:05 [INFO] Processing HKCU registry file.
+11:42:05 [INFO] HKCU staged import file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\HKCU_import_20260630_114205.reg
+11:42:06 [INFO] Backing up registry key: HKCU\Software\GE_Kretz
+11:42:06 [INFO] Backup file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\backup_HKCU_GE_Kretz_20260630_114205.reg
+11:42:06 [INFO] Backup completed.
+11:42:06 [WARN] PreviewOnly enabled. Would import HKCU file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\HKCU_import_20260630_114205.reg
+11:42:06 [INFO] Processing HKLM registry file.
+11:42:06 [INFO] HKLM staged import file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\HKLM_import_20260630_114205.reg
+11:42:06 [INFO] Backing up registry key: HKLM\SOFTWARE\GE_Kretz
+11:42:06 [INFO] Backup file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\backup_HKLM_GE_Kretz_20260630_114205.reg
+11:42:06 [INFO] Backup completed.
+11:42:06 [WARN] PreviewOnly enabled. Would import HKLM file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205\HKLM_import_20260630_114205.reg
+11:42:06 [INFO] ----------------------------------------
+11:42:06 [INFO] Registry import process finished.
+11:42:06 [INFO] Backups/logs saved in: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260630_114205
+11:42:06 [INFO] ----------------------------------------

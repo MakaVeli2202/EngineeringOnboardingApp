@@ -1,0 +1,24 @@
+﻿09:34:44 [INFO] ----------------------------------------
+09:34:44 [INFO] Registry import safety check
+09:34:44 [INFO] ----------------------------------------
+09:34:44 [INFO] App root: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp
+09:34:44 [INFO] HKCU source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hkcu.reg.txt
+09:34:44 [INFO] HKLM source: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Configs\Registry\hklm.reg.txt
+09:34:44 [INFO] Backup directory: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_093444
+09:34:44 [INFO] PreviewOnly: True
+09:34:44 [INFO] SkipHKCU: False
+09:34:44 [INFO] SkipHKLM: False
+09:34:44 [INFO] Is Administrator: False
+09:34:44 [INFO] ----------------------------------------
+09:34:44 [INFO] Processing HKCU registry file.
+09:34:44 [INFO] HKCU staged import file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_093444\HKCU_import_20260701_093444.reg
+09:34:44 [INFO] Backing up registry key: HKCU\Software\GE_Kretz
+09:34:44 [INFO] Backup file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_093444\backup_HKCU_GE_Kretz_20260701_093444.reg
+09:34:45 [INFO] Backup completed.
+09:34:45 [WARN] PreviewOnly enabled. Would import HKCU file: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_093444\HKCU_import_20260701_093444.reg
+09:34:45 [INFO] Processing HKLM registry file.
+09:34:45 [WARN] HKLM requires Administrator rights. Skipping import.
+09:34:45 [INFO] ----------------------------------------
+09:34:45 [INFO] Registry import process finished.
+09:34:45 [INFO] Backups/logs saved in: C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\Logs\RegistryBackup_20260701_093444
+09:34:45 [INFO] ----------------------------------------
