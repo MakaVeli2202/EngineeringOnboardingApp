@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EngineeringOnboardingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0aad100170f333e86d553d2dbfcba1ca1066b91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d26feb95aee5d00abac4d79f932b6bd89e7d5df0")]
 [assembly: System.Reflection.AssemblyProductAttribute("EngineeringOnboardingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EngineeringOnboardingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
