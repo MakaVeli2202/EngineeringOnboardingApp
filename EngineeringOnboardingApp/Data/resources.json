@@ -54,6 +54,46 @@
     "category": "Tools",
     "description": "ReSharper download page. Replace later if you get a company-managed source.",
     "addToBookmarks": false
+  },
+  {
+    "id": "emergeu",
+    "name": "Emerge U",
+    "url": "https://emergeu.gehealthcare.com",
+    "category": "Learning",
+    "description": "Complete the required GenAI Copilot training course here.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "gitlab",
+    "name": "GEHC GitLab",
+    "url": "https://gitlab.apps.ge-healthcare.net",
+    "category": "Source Control",
+    "description": "Hosts the WomensHealthUltrasound SystemSource repository. Generate your access token here.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "systemsource-repo",
+    "name": "SystemSource Repository",
+    "url": "https://gitlab.apps.ge-healthcare.net/WomensHealthUltrasound/SystemSource.git",
+    "category": "Source Control",
+    "description": "Clone the V730 Voluson SystemSource repository into C:\\dev\\master.",
+    "addToBookmarks": false
+  },
+  {
+    "id": "globalprotect-portal",
+    "name": "GlobalProtect VPN",
+    "url": "https://vpn.gehealthcare.com",
+    "category": "Access",
+    "description": "Connect to the corporate network. Access requires the E5 license.",
+    "addToBookmarks": true
+  },
+  {
+    "id": "saviynt",
+    "name": "Saviynt Access Requests",
+    "url": "https://gehealthcare.saviyntcloud.com/ECMv6/request/requestHome",
+    "category": "Access",
+    "description": "Request APP_Gitlab, SCIM_gehc_ghemu-copilot, and SCIM_gehc_ghemuall access.",
+    "addToBookmarks": true
   }
 ]
 

@@ -299,42 +299,54 @@ public class PreflightService
 
             try
             {
-                var escapedPath = script.Replace("'", "''");
-
-                var command =
-                    $"$content = Get-Content -LiteralPath '{escapedPath}' -Raw; [System.Management.Automation.ScriptBlock]::Create($content) | Out-Null";
-
-                var psi = new ProcessStartInfo
+                if (ProcessGate.ShouldLaunch("ValidatePS " + scriptName))
                 {
-                    FileName = "powershell.exe",
-                    Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                };
-
-                using var process = Process.Start(psi);
-
-                if (process == null)
-                {
-                    Add(results, "Scripts", scriptName, "ERROR", "Could not start PowerShell parser.");
-                    continue;
+                    await ValidatePowerShellScriptAsync(script, scriptName, results);
                 }
-
-                var stderr = await process.StandardError.ReadToEndAsync();
-                await process.WaitForExitAsync();
-
-                if (process.ExitCode == 0)
-                    Add(results, "Scripts", scriptName, "OK", "Syntax valid.");
                 else
-                    Add(results, "Scripts", scriptName, "ERROR", stderr);
+                {
+                    Add(results, "Scripts", scriptName, "OK", "Syntax valid (simulated).");
+                }
             }
             catch (Exception ex)
             {
                 Add(results, "Scripts", scriptName, "ERROR", ex.Message);
             }
         }
+    }
+
+    private async Task ValidatePowerShellScriptAsync(string script, string scriptName, List<PreflightItem> results)
+    {
+        var escapedPath = script.Replace("'", "''");
+
+        var command =
+            $"$content = Get-Content -LiteralPath '{escapedPath}' -Raw; [System.Management.Automation.ScriptBlock]::Create($content) | Out-Null";
+
+        var psi = new ProcessStartInfo
+        {
+            FileName = "powershell.exe",
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"",
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+
+        using var process = Process.Start(psi);
+
+        if (process == null)
+        {
+            Add(results, "Scripts", scriptName, "ERROR", "Could not start PowerShell parser.");
+            return;
+        }
+
+        var stderr = await process.StandardError.ReadToEndAsync();
+        await process.WaitForExitAsync();
+
+        if (process.ExitCode == 0)
+            Add(results, "Scripts", scriptName, "OK", "Syntax valid.");
+        else
+            Add(results, "Scripts", scriptName, "ERROR", stderr);
     }
 
     private void CheckHardcodedUserPaths(List<PreflightItem> results)

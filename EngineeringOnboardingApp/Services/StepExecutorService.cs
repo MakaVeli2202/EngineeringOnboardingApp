@@ -85,6 +85,9 @@ public class StepExecutorService
         if (string.IsNullOrWhiteSpace(url))
             throw new InvalidOperationException("URL is empty.");
 
+        if (!ProcessGate.ShouldLaunch("OpenUrl " + url))
+            return;
+
         Process.Start(new ProcessStartInfo
         {
             FileName = url,
@@ -112,6 +115,13 @@ public class StepExecutorService
             arguments += $" {scriptArguments}";
 
         progressUpdate?.Invoke(15);
+
+        if (!ProcessGate.ShouldLaunch("RunScript " + relativeScriptPath + " " + scriptArguments))
+        {
+            log($"[SIM] Skipped script execution: {relativeScriptPath}");
+            progressUpdate?.Invoke(100);
+            return;
+        }
 
         var psi = new ProcessStartInfo
         {

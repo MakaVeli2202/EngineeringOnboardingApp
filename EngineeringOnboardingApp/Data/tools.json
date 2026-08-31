@@ -122,17 +122,17 @@
   {
     "id": "gitextensions",
     "name": "GitExtensions",
-    "description": "Graphical user interface for Git repositories.",
+    "description": "Graphical user interface for Git repositories used for repository management.",
     "category": "Source Control",
-    "required": false,
-    "optionalSelectable": true,
+    "required": true,
+    "optionalSelectable": false,
     "actionType": "RunScript",
     "url": "",
     "scriptPath": "Scripts\\install-gitextensions.ps1",
     "scriptArguments": "",
     "detectionType": "fileexists",
     "detectionValue": "%ProgramFiles%\\GitExtensions\\GitExtensions.exe|%ProgramFiles(x86)%\\GitExtensions\\GitExtensions.exe",
-    "helpText": "Optional Git GUI for engineers who prefer visual repository management instead of only using the command line."
+    "helpText": "Graphical Git client used for cloning and managing the SystemSource repository."
   },
   {
     "id": "kdiff3",

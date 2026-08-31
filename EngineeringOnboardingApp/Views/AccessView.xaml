@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="EngineeringOnboardingApp.Views.AccessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="26,20">
+        <StackPanel>
+
+            <TextBlock Text="Access &amp; Requests" Style="{StaticResource H1TextStyle}"/>
+            <TextBlock Text="Obtain the access and approvals required before you can set up and run the development environment."
+                       Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+
+            <!-- Guide callout -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,18,0,0" Background="{StaticResource InfoTintBrush}">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource IconInfo}" Stroke="#5BC0EB" StrokeThickness="1.6"
+                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                          Width="22" Height="22" Stretch="Uniform" VerticalAlignment="Top" Margin="0,2,14,0"/>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C4CBD9" FontSize="13" LineHeight="21">
+                        <Run Text="Workstation rights should arrive as" FontWeight="SemiBold"/>
+                        <Run Text="Standard"/>, then upgrade
+                        <Run Text="GenAI Copilot"/>. Complete the required
+                        <Run Text="GenAI"/> course on Emerge U and notify your manager before being granted access.
+                        Request <Run Text="Ping"/>, <Run Text="GitLab"/>, and <Run Text="Emerge U (Copilot)"/> access
+                        in Saviynt under the E5 request.
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- Tiles -->
+            <TextBlock Text="Network &amp; Identity" Style="{StaticResource SectionLabelTextStyle}" Margin="2,22,0,8"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource FeatureCardStyle}" Click="OpenVpn_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconShield}" Stroke="#A855F7" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="GlobalProtect VPN" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Connect to the corporate network. Password: Acc3ssGr@nted" Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource FeatureCardStyle}" Margin="12,0,0,0" Click="OpenSso_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconAccess}" Stroke="#C084FC" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="InTune &amp; SSO Portal" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Complete single sign-on and device enrollment after joining the network." Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource FeatureCardStyle}" Margin="12,0,0,0" Click="OpenE5_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconWindows}" Stroke="#F5A623" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="E5 License &amp; Email" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Ensure your Microsoft E5 license and email are provisioned." Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource FeatureCardStyle}" Click="OpenGenAi_Click" Margin="0,12,0,0">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconGlobe}" Stroke="#22C55E" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="GenAI Copilot Training" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Complete the GenAI Copilot course on Emerge U, then notify your manager." Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource FeatureCardStyle}" Margin="12,12,0,0" Click="OpenSaviynt_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconBookmark}" Stroke="#F45B69" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Saviynt Access Requests" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Request APP_Gitlab, SCIM_gehc_ghemu-copilot, and SCIM_gehc_ghemuall." Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource FeatureCardStyle}" Margin="12,12,0,0" Click="OpenUpdates_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconRefresh}" Stroke="#5BC0EB" StrokeThickness="1.6" StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round" StrokeLineJoin="Round" Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Windows Updates" FontWeight="Bold" Foreground="#ECEEF4" FontSize="15" Margin="0,14,0,3"/>
+                        <TextBlock Text="Run Windows Update and Dell Support Assist for current drivers." Style="{StaticResource SubtitleTextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- Log -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,22,0,0">
+                <StackPanel>
+                    <TextBlock Text="Access Guide" Style="{StaticResource H2TextStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C4CBD9" FontSize="13" LineHeight="22" Margin="0,10,0,0">
+                        <Run>1.  Connect to the Wi-Fi network "</Run><Run FontWeight="Bold">Acc3ssGr@nted</Run><Run>" and sign in with your SSO credentials.</Run>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C4CBD9" FontSize="13" LineHeight="22" Margin="0,6,0,0">
+                        <Run>2.  Establish the GlobalProtect VPN connection to the corporate network.</Run>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C4CBD9" FontSize="13" LineHeight="22" Margin="0,6,0,0">
+                        <Run>3.  Complete the </Run><Run FontWeight="SemiBold">GenAI Copilot</Run><Run> training on Emerge U and email your manager about your GenAI access.</Run>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Foreground="#C4CBD9" FontSize="13" LineHeight="22" Margin="0,6,0,0">
+                        <Run>4.  Submit Saviynt access requests for </Run><Run FontWeight="SemiBold">APP_Gitlab</Run><Run>, </Run><Run FontWeight="SemiBold">SCIM_gehc_ghemu-copilot</Run><Run>, and </Run><Run FontWeight="SemiBold">SCIM_gehc_ghemuall</Run><Run>.</Run>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

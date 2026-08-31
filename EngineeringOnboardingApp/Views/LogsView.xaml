@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="EngineeringOnboardingApp.Views.LogsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <Grid Margin="26,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Session Logs" Style="{StaticResource H1TextStyle}"/>
+                <TextBlock Text="Live output from onboarding steps and tool operations."
+                           Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="Copy Log" Style="{StaticResource EngButtonStyle}" Click="Copy_Click" Margin="0,0,10,0"/>
+                <Button Content="Clear" Style="{StaticResource EngButtonStyle}" Click="Clear_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource CardStyle}" Padding="0" Margin="0,16,0,0">
+            <CheckBox x:Name="AutoScrollCheck" Content="Auto-scroll to newest" IsChecked="True" Margin="16,12" HorizontalAlignment="Left"/>
+        </Border>
+
+        <Border Grid.Row="2" Style="{StaticResource CardStyle}" Padding="0" Margin="0,16,0,0" Background="#0C0E13">
+            <Border BorderBrush="#2A1E4A" BorderThickness="1" Padding="14" Background="#0C0E13">
+                <ScrollViewer x:Name="LogScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListBox x:Name="LogList" Background="Transparent" BorderThickness="0"
+                             FontFamily="Cascadia Mono, Consolas" FontSize="12" Foreground="#C4CBD9">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontFamily="Cascadia Mono, Consolas" FontSize="12"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>

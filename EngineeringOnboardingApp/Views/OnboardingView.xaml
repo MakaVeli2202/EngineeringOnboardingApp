@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="EngineeringOnboardingApp.Views.OnboardingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- LEFT: Step list -->
+        <Border Grid.Column="0" Background="#14161B" BorderBrush="#262B36" BorderThickness="0,0,1,0">
+            <Grid Margin="20,18">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Setup Checklist" Style="{StaticResource H2TextStyle}"/>
+                    <TextBlock x:Name="StepsSummary" Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <Border Grid.Row="1" Margin="0,16,0,14" Padding="0">
+                    <ProgressBar x:Name="OverallBar" Height="8"/>
+                </Border>
+
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl x:Name="StepsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.SelectStepCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="26"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0" VerticalAlignment="Center">
+                                            <TextBlock x:Name="StatusIcon" Text="&#x25CB;" FontSize="18" Foreground="#5A6374"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                                <Setter Property="Foreground" Value="#A855F7"/>
+                                                                <Setter Property="Text" Value="&#x25CF;"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                                <Setter Property="Foreground" Value="#F45B69"/>
+                                                                <Setter Property="Text" Value="&#x2715;"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <Border x:Name="CheckBadge" CornerRadius="9" Width="18" Height="18" Background="#22C55E"
+                                                    Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Path Data="{StaticResource IconCheck}" Stroke="#0E1A12" StrokeThickness="2"
+                                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                                      Width="10" Height="10" Stretch="Uniform"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </Grid>
+                                        <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" Foreground="#ECEEF4" FontSize="13" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding Description}" FontSize="11" Foreground="#7C8AA5" TextWrapping="Wrap"
+                                                       MaxHeight="34" TextTrimming="CharacterEllipsis"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource QuickToolRowStyle}">
+                                            <Setter Property="Background" Value="#CC12141A"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="Completed">
+                                                    <Setter Property="Background" Value="#14251B"/>
+                                                    <Setter Property="Tag" Value="completed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                    <Setter Property="Background" Value="#1A2A45"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                    <Setter Property="Background" Value="#261316"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- RIGHT: Detail -->
+        <Border Grid.Column="1" Background="Transparent" Padding="26,22">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Step Details" Style="{StaticResource SectionLabelTextStyle}"/>
+                    <TextBlock x:Name="DetailTitle" Text="Select a step to view details" Style="{StaticResource H1TextStyle}" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="DetailDescription" Style="{StaticResource SubtitleTextStyle}" Margin="0,10,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <Border Grid.Row="1" Style="{StaticResource CardStyle}" Margin="0,14,0,0" VerticalAlignment="Stretch">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="Guide" Style="{StaticResource SectionLabelTextStyle}"/>
+                            <TextBlock x:Name="DetailHelp" Text="No step selected." Foreground="#C4CBD9" FontSize="13"
+                                       Margin="0,8,0,0" TextWrapping="Wrap" LineHeight="22"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <ProgressBar x:Name="ProcessBar" Grid.Row="2" Height="8" Margin="0,14,0,0" Visibility="Collapsed"/>
+
+                <Border Grid.Row="3" Padding="0" Margin="0,18,0,0" Background="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="StatusText" Foreground="#9AA2B1" FontSize="12" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="Run All" Style="{StaticResource PrimaryButtonStyle}"
+                                    Command="{Binding RunAllCommand}" Margin="0,0,10,0"/>
+                            <Button x:Name="RunStepButton" Content="Run Step" Style="{StaticResource EngButtonStyle}"
+                                    Command="{Binding RunStepCommand}" Margin="0,0,10,0"/>
+                            <Button Content="Mark Complete" Style="{StaticResource EngButtonStyle}"
+                                    Command="{Binding MarkCompletedCommand}" Margin="0,0,10,0"/>
+                            <Button Content="Reset" Style="{StaticResource DangerButtonStyle}"
+                                    Command="{Binding ResetCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

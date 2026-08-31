@@ -1,0 +1,123 @@
+<UserControl x:Class="EngineeringOnboardingApp.Views.AdminLinksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <Grid Margin="26,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Manage Links" Style="{StaticResource H1TextStyle}"/>
+                <TextBlock Text="Create, edit, and remove resource links. Changes save to resources.json."
+                           Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="+ New Link" Style="{StaticResource PrimaryButtonStyle}" Click="New_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Body -->
+        <Grid Grid.Row="1" Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- List -->
+            <Border Style="{StaticResource CardStyle}" Padding="0">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Padding="16,14" BorderBrush="#1E232E" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="LINKS" Style="{StaticResource SectionLabelTextStyle}" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="CountText" Grid.Column="1" Style="{StaticResource SubtitleTextStyle}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <ListBox x:Name="LinkList" Background="Transparent" BorderThickness="0"
+                                 SelectionChanged="LinkList_SelectionChanged"
+                                 Foreground="{StaticResource TextBrush}" FontSize="13" Padding="12,8"/>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+
+            <!-- Editor -->
+            <Border Grid.Column="2" Style="{StaticResource CardStyle}" Padding="22">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="EditorTitle" Text="New resource"
+                               Style="{StaticResource H2TextStyle}"/>
+
+                    <StackPanel Grid.Row="1" Margin="0,16,0,0">
+                        <TextBlock Text="NAME" Style="{StaticResource SectionLabelTextStyle}"/>
+                        <TextBox x:Name="NameBox" Margin="0,6,0,0" Height="36"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Margin="0,14,0,0">
+                        <TextBlock Text="URL" Style="{StaticResource SectionLabelTextStyle}"/>
+                        <TextBox x:Name="UrlBox" Margin="0,6,0,0" Height="36"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Margin="0,14,0,0">
+                        <TextBlock Text="CATEGORY" Style="{StaticResource SectionLabelTextStyle}"/>
+                        <TextBox x:Name="CategoryBox" Margin="0,6,0,0" Height="36"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Margin="0,14,0,0">
+                        <TextBlock Text="DESCRIPTION" Style="{StaticResource SectionLabelTextStyle}"/>
+                        <TextBox x:Name="DescriptionBox" Margin="0,6,0,0" Height="72"
+                                 AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                                 VerticalContentAlignment="Top"/>
+                    </StackPanel>
+
+                    <CheckBox x:Name="BookmarkCheck" Grid.Row="5" Content="Add to browser bookmarks"
+                              Margin="0,16,0,0" IsChecked="False"/>
+
+                    <TextBlock x:Name="StatusText" Grid.Row="6" FontSize="12" TextWrapping="Wrap"
+                               Margin="0,12,0,0" Visibility="Collapsed"/>
+
+                    <Grid Grid.Row="7" Margin="0,18,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="SaveBtn" Content="Save Link" Style="{StaticResource PrimaryButtonStyle}"
+                                Width="160" HorizontalAlignment="Left" Click="Save_Click"/>
+                        <Button Grid.Column="1" x:Name="ResetBtn" Content="Clear" Style="{StaticResource EngButtonStyle}"
+                                Width="90" Margin="0,0,10,0" Click="Reset_Click"/>
+                        <Button Grid.Column="2" x:Name="DeleteBtn" Content="Delete" Style="{StaticResource DangerButtonStyle}"
+                                Width="90" Click="Delete_Click" IsEnabled="False" HorizontalAlignment="Left"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

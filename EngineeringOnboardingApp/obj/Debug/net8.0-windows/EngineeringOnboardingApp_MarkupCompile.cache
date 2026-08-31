@@ -1,20 +1,20 @@
 ﻿EngineeringOnboardingApp
-1.0.0.0
+
 
 winexe
 C#
 .cs
-C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\
+D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\
 EngineeringOnboardingApp
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\550026842\source\repos\EngineeringOnboardingApp\EngineeringOnboardingApp\App.xaml
-11407045341
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\App.xaml
+17-1890246397
 
-19-485552335
-1981026658812
-MainWindow.xaml;
+42-993627935
+1981266802334
+MainWindow.xaml;Resources\Colors.xaml;Resources\Icons.xaml;Resources\Styles.xaml;Views\AccessView.xaml;Views\AdminLinksView.xaml;Views\AdminLoginView.xaml;Views\AdminView.xaml;Views\AdminVsConfigView.xaml;Views\AdminWorkspace.xaml;Views\HomeView.xaml;Views\LogsView.xaml;Views\OnboardingView.xaml;Views\ResourcesView.xaml;Views\SettingsView.xaml;Views\ToolsView.xaml;Views\ValidationView.xaml;
 
 False
 

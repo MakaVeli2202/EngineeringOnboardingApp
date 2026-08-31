@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="EngineeringOnboardingApp.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                  Padding="26,22" Background="Transparent">
+        <StackPanel>
+
+            <!-- Hero -->
+            <Border Style="{StaticResource CardStyle}" Background="{StaticResource HeroGradientBrush}" Padding="26,24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Welcome to Engineering Onboarding"
+                                   FontSize="26" FontWeight="Bold" Foreground="#ECEEF4"/>
+                        <TextBlock Text="Complete the guided setup to provision your workstation for Ultrasound Systems development. Run each section in order for a seamless experience."
+                                   FontSize="13" Foreground="#B49BD0" Margin="0,8,0,0" TextWrapping="Wrap" MaxWidth="720"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                            <Button Content="Start Onboarding" Style="{StaticResource PrimaryButtonStyle}" Click="StartOnboarding_Click"/>
+                            <Button Content="Run Validation" Style="{StaticResource EngButtonStyle}" Margin="10,0,0,0" Click="RunValidation_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Border Width="150" Height="150" CornerRadius="75" Background="#264F8CFF">
+                            <Grid>
+                                <Path Data="{StaticResource IconShield}" Stroke="#A855F7" StrokeThickness="2"
+                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                      Width="64" Height="64" Stretch="Uniform"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Progress overview -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,18,0,0" Padding="22,18">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Overall Progress" Style="{StaticResource H2TextStyle}"/>
+                        <TextBlock x:Name="ProgressText" FontSize="14" FontWeight="Bold" Foreground="#A855F7"
+                                   VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    </StackPanel>
+                    <ProgressBar x:Name="OverallBar" Height="12" Margin="0,14,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Overview cards -->
+            <TextBlock Text="At a glance" Style="{StaticResource SectionLabelTextStyle}" Margin="2,24,0,8"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource FeatureCardStyle}" Click="StartOnboarding_Click">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconSteps}" Stroke="#A855F7" StrokeThickness="1.6"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                              Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name="StepsCount" FontSize="20" FontWeight="Bold" Foreground="#ECEEF4" Margin="0,14,0,2"/>
+                        <TextBlock Text="Setup Steps" Style="{StaticResource SubtitleTextStyle}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="1" Style="{StaticResource FeatureCardStyle}" Click="StartTools_Click" Margin="12,0,0,0">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconTools}" Stroke="#C084FC" StrokeThickness="1.6"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                              Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name="ToolsCount" FontSize="20" FontWeight="Bold" Foreground="#ECEEF4" Margin="0,14,0,2"/>
+                        <TextBlock Text="Tools Installed" Style="{StaticResource SubtitleTextStyle}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" Style="{StaticResource FeatureCardStyle}" Click="OpenAccess_Click" Margin="12,0,0,0">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconAccess}" Stroke="#F5A623" StrokeThickness="1.6"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                              Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Pending" FontSize="20" FontWeight="Bold" Foreground="#ECEEF4" Margin="0,14,0,2"/>
+                        <TextBlock Text="Access Requests" Style="{StaticResource SubtitleTextStyle}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="3" Style="{StaticResource FeatureCardStyle}" Click="RunValidation_Click" Margin="12,0,0,0">
+                    <StackPanel>
+                        <Path Data="{StaticResource IconValidation}" Stroke="#22C55E" StrokeThickness="1.6"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                              Width="26" Height="26" Stretch="Uniform" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Run" FontSize="20" FontWeight="Bold" Foreground="#ECEEF4" Margin="0,14,0,2"/>
+                        <TextBlock Text="Environment Validation" Style="{StaticResource SubtitleTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- Quick references -->
+            <TextBlock Text="Quick references" Style="{StaticResource SectionLabelTextStyle}" Margin="2,24,0,8"/>
+            <Border Style="{StaticResource CardStyle}" Padding="0" Margin="0,0,0,18">
+                <StackPanel Margin="20,14">
+                    <Button Style="{StaticResource QuickToolRowStyle}" Click="OpenVpn_Click">
+                        <DockPanel>
+                            <TextBlock Text="GlobalProtect VPN" FontWeight="SemiBold" Foreground="#ECEEF4"/>
+                            <TextBlock Text="Connect to corporate network" Foreground="#7C8AA5" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Style="{StaticResource QuickToolRowStyle}" Click="OpenGenAi_Click">
+                        <DockPanel>
+                            <TextBlock Text="GenAI Copilot Training" FontWeight="SemiBold" Foreground="#ECEEF4"/>
+                            <TextBlock Text="Emerge U course" Foreground="#7C8AA5" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Style="{StaticResource QuickToolRowStyle}" Click="OpenSaviynt_Click">
+                        <DockPanel>
+                            <TextBlock Text="Saviynt Access Requests" FontWeight="SemiBold" Foreground="#ECEEF4"/>
+                            <TextBlock Text="GitLab / Copilot access" Foreground="#7C8AA5" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

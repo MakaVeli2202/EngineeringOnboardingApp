@@ -1,0 +1,66 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Core surfaces -->
+    <Color x:Key="BackgroundColor">#15171C</Color>
+    <Color x:Key="SidebarColor">#101216</Color>
+    <Color x:Key="CardColor">#1C1F26</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="{StaticResource SidebarColor}"/>
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}"/>
+
+    <!-- Engineering accent palette (purple / violet) -->
+    <SolidColorBrush x:Key="AccentBrush" Color="#A855F7"/>
+    <SolidColorBrush x:Key="AccentStrongBrush" Color="#7C3AED"/>
+    <SolidColorBrush x:Key="AccentWarmBrush" Color="#C084FC"/>
+    <SolidColorBrush x:Key="AccentDimBrush" Color="#B49BD0"/>
+
+    <SolidColorBrush x:Key="SurfaceBrush" Color="#15171C"/>
+    <SolidColorBrush x:Key="SurfaceAltBrush" Color="#191C22"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="#101216"/>
+    <SolidColorBrush x:Key="PanelAltBrush" Color="#1C1F26"/>
+    <SolidColorBrush x:Key="CardRaisedBrush" Color="#232731"/>
+    <SolidColorBrush x:Key="InputBrush" Color="#12141A"/>
+
+    <SolidColorBrush x:Key="IronBorderBrush" Color="#262B36"/>
+    <SolidColorBrush x:Key="IronBorderLightBrush" Color="#323847"/>
+    <SolidColorBrush x:Key="AccentBorderBrush" Color="#33A855F7"/>
+    <SolidColorBrush x:Key="AccentBorderStrongBrush" Color="#66A855F7"/>
+
+    <SolidColorBrush x:Key="TextBrush" Color="#ECEEF4"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="#9AA2B1"/>
+    <SolidColorBrush x:Key="TextDimBrush" Color="#6B7280"/>
+
+    <SolidColorBrush x:Key="SubtleBorderBrush" Color="#14FFFFFF"/>
+    <SolidColorBrush x:Key="AccentBorderBrightBrush" Color="#8CA855F7"/>
+
+    <SolidColorBrush x:Key="SuccessBrush" Color="#22C55E"/>
+    <SolidColorBrush x:Key="SuccessTintBrush" Color="#14251B"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#F5A623"/>
+    <SolidColorBrush x:Key="WarningTintBrush" Color="#261F12"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#F45B69"/>
+    <SolidColorBrush x:Key="DangerTintBrush" Color="#261316"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="#C084FC"/>
+    <SolidColorBrush x:Key="InfoTintBrush" Color="#221633"/>
+    <SolidColorBrush x:Key="NeutralBrush" Color="#A1A7B4"/>
+
+    <!-- Gradients -->
+    <LinearGradientBrush x:Key="PrimaryButtonGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#C084FC" Offset="0"/>
+        <GradientStop Color="#7C3AED" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DangerButtonGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#F45B69" Offset="0"/>
+        <GradientStop Color="#E11D48" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="HeroGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#2A1E4A" Offset="0"/>
+        <GradientStop Color="#241A40" Offset="0.5"/>
+        <GradientStop Color="#1C1533" Offset="1"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

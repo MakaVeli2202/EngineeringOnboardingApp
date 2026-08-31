@@ -1,0 +1,36 @@
+<UserControl x:Class="EngineeringOnboardingApp.Views.ResourcesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1400" d:DesignHeight="820"
+             Background="Transparent">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="26,20">
+        <StackPanel>
+            <TextBlock Text="Resources" Style="{StaticResource H1TextStyle}"/>
+            <TextBlock Text="Bookmarks, documentation, and learning links for your onboarding."
+                       Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+
+            <Border Style="{StaticResource CardStyle}" Margin="0,18,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Path Data="{StaticResource IconInfo}" Stroke="#5BC0EB" StrokeThickness="1.6"
+                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                              Width="20" Height="20" Stretch="Uniform" Margin="0,0,12,0"/>
+                        <TextBlock Text="Use the Onboarding guide tab to add these to your browser bookmarks." Style="{StaticResource SubtitleTextStyle}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="Open All" Style="{StaticResource EngButtonStyle}" Click="OpenAll_Click"/>
+                </Grid>
+            </Border>
+
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" Margin="0,18,0,0">
+                <StackPanel x:Name="ResourcesPanel"/>
+            </ScrollViewer>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
