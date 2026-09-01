@@ -44,7 +44,7 @@ public class StateService
         }
     }
 
-    public void Save(IEnumerable<OnboardingStep> steps, IEnumerable<ToolItem> tools)
+    public void Save(IEnumerable<OnboardingStep> steps, IEnumerable<ToolItem> tools, string role = "", bool roleProvided = false)
     {
         var state = new AppState
         {
@@ -61,7 +61,10 @@ public class StateService
                 Status = t.Status,
                 IsSelected = t.IsSelected,
                 IsInstalled = t.IsInstalled
-            }).ToList()
+            }).ToList(),
+
+            Role = role,
+            RoleProvided = roleProvided
         };
 
         var options = new JsonSerializerOptions

@@ -116,3 +116,5 @@ D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-w
 D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\Views\AdminWorkspace.baml
 D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\Views\AdminVsConfigView.g.cs
 D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\Views\AdminWorkspace.g.cs
+D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\RoleSelectionDialog.baml
+D:\Projects\EngineeringOnboardingApp\EngineeringOnboardingApp\obj\Debug\net8.0-windows\RoleSelectionDialog.g.cs

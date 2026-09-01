@@ -34,21 +34,41 @@ public class OnboardingViewModel : BaseViewModel
             {
                 OnPropertyChanged(nameof(SelectedDescription));
                 OnPropertyChanged(nameof(SelectedHelpText));
+                OnPropertyChanged(nameof(SelectedSection));
                 OnPropertyChanged(nameof(CanRunStep));
                 OnPropertyChanged(nameof(IsOpenUrlStep));
                 OnPropertyChanged(nameof(IsConfirmationStep));
                 OnPropertyChanged(nameof(IsScriptStep));
+                OnPropertyChanged(nameof(ActionButtonLabel));
                 System.Windows.Input.CommandManager.InvalidateRequerySuggested();
             }
         }
     }
 
     public string SelectedDescription => SelectedStep?.Description ?? string.Empty;
+    public string SelectedSection => SelectedStep?.Section ?? string.Empty;
     public string SelectedHelpText => SelectedStep?.HelpText ?? string.Empty;
     public bool IsOpenUrlStep => SelectedStep != null && SelectedStep.ActionType.Contains("url", System.StringComparison.OrdinalIgnoreCase);
     public bool IsConfirmationStep => SelectedStep != null && SelectedStep.ActionType.Contains("manualconfirm", System.StringComparison.OrdinalIgnoreCase);
     public bool IsScriptStep => SelectedStep != null && SelectedStep.ActionType.Contains("script", System.StringComparison.OrdinalIgnoreCase);
     public bool CanRunStep => SelectedStep != null && !_isRunning;
+
+    public string ActionButtonLabel
+    {
+        get
+        {
+            var action = (SelectedStep?.ActionType ?? string.Empty).Trim().ToLowerInvariant();
+            var hasUrl = !string.IsNullOrWhiteSpace(SelectedStep?.Url);
+
+            if (action == "opensettings")
+                return "Open Settings";
+            if (action == "openurl")
+                return hasUrl ? "Open Link" : "Open";
+            if (action == "runscript" || action == "runscriptandopenurl")
+                return "Run Setup";
+            return "Run Step";
+        }
+    }
 
     public string StatusMessage
     {
@@ -69,6 +89,8 @@ public class OnboardingViewModel : BaseViewModel
         }
     }
 
+    public bool ShowRolePrompt => !_session.RoleProvided;
+
     public double ProcessProgress
     {
         get => _processProgress;
@@ -84,6 +106,7 @@ public class OnboardingViewModel : BaseViewModel
     public ICommand ResetCommand => new RelayCommand(_ => Reset());
     public ICommand SelectStepCommand => new RelayCommand(p => SelectStep(p as OnboardingStep));
     public ICommand MarkCompletedCommand => new RelayCommand(_ => MarkCompleted(), _ => SelectedStep != null);
+    public ICommand SetRoleCommand => new RelayCommand(p => SetRole(p as string ?? string.Empty));
 
     private void SelectStep(OnboardingStep? step)
     {
@@ -96,11 +119,43 @@ public class OnboardingViewModel : BaseViewModel
     private void Refresh()
     {
         Steps.Clear();
+
         foreach (var step in _session.Steps)
+        {
+            if (!IsStepVisibleForRole(step))
+                continue;
+
             Steps.Add(step);
+        }
 
         OnPropertyChanged(nameof(StepsCompleted));
         OnPropertyChanged(nameof(StepsRemaining));
+    }
+
+    private bool IsStepVisibleForRole(OnboardingStep step)
+    {
+        if (string.IsNullOrWhiteSpace(step.Role))
+            return true;
+
+        if (!_session.RoleProvided)
+            return true;
+
+        return string.Equals(step.Role, _session.Role, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void SetRole(string role)
+    {
+        if (string.IsNullOrWhiteSpace(role))
+            return;
+
+        _session.SetRole(role);
+        Refresh();
+
+        SelectedStep = Steps.FirstOrDefault();
+        OnPropertyChanged(nameof(ShowRolePrompt));
+        OnPropertyChanged(nameof(StepsCompleted));
+        OnPropertyChanged(nameof(StepsRemaining));
+        CommandManager.InvalidateRequerySuggested();
     }
 
     private async Task RunStepAsync()

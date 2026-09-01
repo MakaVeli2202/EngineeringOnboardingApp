@@ -21,6 +21,31 @@ public partial class SettingsView : UserControl
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "EngineeringOnboardingApp",
             "state.json");
+
+        RefreshRole();
+    }
+
+    private void RefreshRole()
+    {
+        RoleStatus.Text = _session.RoleProvided
+            ? (string.Equals(_session.Role, "contractor", StringComparison.OrdinalIgnoreCase)
+                ? "Current role: Contractor"
+                : "Current role: Direct Employee")
+            : "Role not set yet.";
+    }
+
+    private void Contractor_Click(object sender, RoutedEventArgs e)
+    {
+        _session.SetRole("contractor");
+        RefreshRole();
+        RoleStatusText.Text = "Role set to Contractor. Onboarding will show contractor steps.";
+    }
+
+    private void Employee_Click(object sender, RoutedEventArgs e)
+    {
+        _session.SetRole("employee");
+        RefreshRole();
+        RoleStatusText.Text = "Role set to Direct Employee. Contractor-only steps are hidden.";
     }
 
     private void ResetProgress_Click(object sender, RoutedEventArgs e)

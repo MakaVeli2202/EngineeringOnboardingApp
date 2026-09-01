@@ -23,8 +23,19 @@ namespace EngineeringOnboardingApp
             _session.Load();
             _session.Log.Append("Application started.");
 
+            ShowRoleDialogIfNeeded();
+
             ActivateNav(BtnHome);
             NavigateTo("home");
+        }
+
+        private void ShowRoleDialogIfNeeded()
+        {
+            if (_session.RoleProvided)
+                return;
+
+            var dialog = new RoleSelectionDialog();
+            dialog.ShowDialog();
         }
 
         protected override void OnClosed(System.EventArgs e)

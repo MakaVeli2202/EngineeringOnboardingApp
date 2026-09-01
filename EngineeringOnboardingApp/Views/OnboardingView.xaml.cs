@@ -38,6 +38,7 @@ public partial class OnboardingView : UserControl
             return;
 
         DetailTitle.Text = _vm.SelectedStep?.Title ?? "Select a step to view details";
+        DetailSection.Text = _vm.SelectedStep?.Section ?? string.Empty;
         DetailDescription.Text = _vm.SelectedStep?.Description ?? string.Empty;
         DetailHelp.Text = string.IsNullOrWhiteSpace(_vm.SelectedStep?.HelpText)
             ? _vm.SelectedStep?.Description ?? "Select a step to see the guide."
@@ -48,6 +49,6 @@ public partial class OnboardingView : UserControl
 
         StatusText.Text = _vm.StatusMessage;
         ProcessBar.Visibility = _vm.IsRunning ? Visibility.Visible : Visibility.Collapsed;
-        RunStepButton.Content = _vm.IsOpenUrlStep ? "Run Step" : "Run Step";
+        RunStepButton.Content = _vm.ActionButtonLabel;
     }
 }

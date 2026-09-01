@@ -16,6 +16,8 @@ public class AppSession : ViewModels.BaseViewModel
     private List<ToolItem> _tools = new();
     private List<ResourceLink> _resources = new();
     private double _overallProgress;
+    private string _role = string.Empty;
+    private bool _roleProvided;
 
     public LogService Log => _log;
 
@@ -49,6 +51,22 @@ public class AppSession : ViewModels.BaseViewModel
 
     public int TotalTools => _tools.Count;
 
+    public string Role => _role;
+
+    public bool RoleProvided => _roleProvided;
+
+    public void SetRole(string role)
+    {
+        if (string.Equals(_role, role, System.StringComparison.OrdinalIgnoreCase) && _roleProvided)
+            return;
+
+        _role = role;
+        _roleProvided = true;
+        _state.Save(_steps, _tools, _role, _roleProvided);
+        OnPropertyChanged(nameof(Role));
+        OnPropertyChanged(nameof(RoleProvided));
+    }
+
     public void Load()
     {
         _steps = _config.LoadSteps();
@@ -56,6 +74,9 @@ public class AppSession : ViewModels.BaseViewModel
         _resources = _config.LoadResources();
 
         var saved = _state.Load();
+
+        _role = saved.Role;
+        _roleProvided = saved.RoleProvided;
 
         foreach (var savedStep in saved.Steps)
         {
@@ -74,7 +95,7 @@ public class AppSession : ViewModels.BaseViewModel
             {
                 tool.Status = savedTool.Status;
                 tool.IsSelected = savedTool.IsSelected;
-                tool.IsInstalled = savedTool.IsInstalled;
+                tool.IsInstalled = savedTool.IsInstalled && IsDetectable(tool);
             }
         }
 
@@ -83,7 +104,7 @@ public class AppSession : ViewModels.BaseViewModel
 
     public void SaveState()
     {
-        _state.Save(_steps, _tools);
+        _state.Save(_steps, _tools, _role, _roleProvided);
         RecomputeProgress();
     }
 
@@ -121,5 +142,11 @@ public class AppSession : ViewModels.BaseViewModel
         double done = _steps.Count(s => s.Status == Models.StepStatus.Completed);
 
         OverallProgress = total == 0 ? 0 : (done / total) * 100.0;
+    }
+
+    private static bool IsDetectable(ToolItem tool)
+    {
+        return !string.IsNullOrWhiteSpace(tool.DetectionType) &&
+               !string.IsNullOrWhiteSpace(tool.DetectionValue);
     }
 }

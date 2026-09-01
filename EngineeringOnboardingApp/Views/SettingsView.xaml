@@ -26,6 +26,21 @@
                 </StackPanel>
             </Border>
 
+            <!-- Role -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,14,0,0">
+                <StackPanel>
+                    <TextBlock Text="My Role" Style="{StaticResource H2TextStyle}"/>
+                    <TextBlock x:Name="RoleStatus" Style="{StaticResource SubtitleTextStyle}" Margin="0,4,0,0"/>
+                    <TextBlock Text="Your role determines which steps apply to you (e.g. the E5 license request for contractors)."
+                               Foreground="#9AA2B1" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                        <Button Content="Contractor" Style="{StaticResource EngButtonStyle}" Click="Contractor_Click"/>
+                        <Button Content="Direct Employee" Style="{StaticResource EngButtonStyle}" Margin="10,0,0,0" Click="Employee_Click"/>
+                    </StackPanel>
+                    <TextBlock x:Name="RoleStatusText" Foreground="#9AA2B1" FontSize="12" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
             <!-- Data -->
             <Border Style="{StaticResource CardStyle}" Margin="0,14,0,0">
                 <StackPanel>

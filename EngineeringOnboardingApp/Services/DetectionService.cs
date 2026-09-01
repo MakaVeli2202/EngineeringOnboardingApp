@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
 using EngineeringOnboardingApp.Models;
@@ -101,30 +100,54 @@ public class DetectionService
 
     private bool CommandExists(string command)
     {
+        // Search the PATH directories explicitly (plus System32) instead of using
+        // the legacy "where" tool, which also searches the current working directory
+        // and can therefore report a tool as installed when only an unrelated file or
+        // a broken stub is present in the launch folder. Returns true only when an
+        // actual executable matching the command exists somewhere on the search path.
         try
         {
-            var psi = new ProcessStartInfo
+            var extensions = new[] { ".exe", ".cmd", ".bat", ".com" }
+                .Concat(Environment.GetEnvironmentVariable("PATHEXT")?.Split(';').Where(e => !string.IsNullOrWhiteSpace(e) && e[0] == '.') ?? Array.Empty<string>())
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+
+            foreach (var directory in SearchDirectories())
             {
-                FileName = "where",
-                Arguments = $"\"{command}\"",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+                foreach (var extension in extensions)
+                {
+                    var candidate = Path.Combine(directory, command + extension);
+                    if (File.Exists(candidate))
+                        return true;
+                }
+            }
 
-            using var process = Process.Start(psi);
-
-            if (process == null)
-                return false;
-
-            process.WaitForExit();
-            return process.ExitCode == 0;
+            return false;
         }
         catch
         {
             return false;
         }
+    }
+
+    private static IEnumerable<string> SearchDirectories()
+    {
+        var dirs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        var path = Environment.GetEnvironmentVariable("PATH");
+        if (!string.IsNullOrWhiteSpace(path))
+        {
+            foreach (var dir in path.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var expanded = Environment.ExpandEnvironmentVariables(dir.Trim().Trim('"'));
+                if (!string.IsNullOrWhiteSpace(expanded))
+                    dirs.Add(expanded);
+            }
+        }
+
+        dirs.Add(Environment.GetFolderPath(Environment.SpecialFolder.System));
+
+        return dirs;
     }
 
     private bool RegistryDisplayNameExists(string displayNameContains)
@@ -157,6 +180,14 @@ public class DetectionService
                     {
                         using var subKey = uninstallKey.OpenSubKey(subKeyName);
                         var displayName = subKey?.GetValue("DisplayName")?.ToString();
+
+                        // Ignore Windows internal/system-component entries (not real apps).
+                        if (subKey?.GetValue("SystemComponent") is int systemComponentInt && systemComponentInt == 1)
+                            continue;
+                        if (subKey?.GetValue("SystemComponent") is string systemComponentStr &&
+                            int.TryParse(systemComponentStr.Trim(), out var systemComponentParsed) &&
+                            systemComponentParsed == 1)
+                            continue;
 
                         if (!string.IsNullOrWhiteSpace(displayName) &&
                             displayName.Contains(displayNameContains, StringComparison.OrdinalIgnoreCase))

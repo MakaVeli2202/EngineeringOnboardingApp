@@ -97,6 +97,12 @@ public class ToolsViewModel : BaseViewModel
         }
     }
 
+    private static bool IsInstallAction(string? actionType)
+    {
+        var action = (actionType ?? string.Empty).Trim().ToLowerInvariant();
+        return action == "runscript" || action == "runscriptandopenurl";
+    }
+
     private async Task DetectAllAsync()
     {
         IsRunning = true;
@@ -148,7 +154,8 @@ public class ToolsViewModel : BaseViewModel
                 try
                 {
                     await _executor.ExecuteToolAsync(tool, _session.Log.Append, p => { });
-                    tool.IsInstalled = true;
+                    if (IsInstallAction(tool.ActionType))
+                        tool.IsInstalled = true;
                     tool.Status = StepStatus.Completed;
                     _session.Log.Append($"Installed tool: {tool.Name}");
                 }

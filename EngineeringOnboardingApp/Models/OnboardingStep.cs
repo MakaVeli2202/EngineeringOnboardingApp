@@ -28,6 +28,8 @@ public class OnboardingStep : ObservableObject
     public bool Deprecated { get; set; }
     public bool IsOptional { get; set; }
 
+    public string Role { get; set; } = string.Empty;
+
     public string ActionType { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
     public string ScriptPath { get; set; } = string.Empty;
